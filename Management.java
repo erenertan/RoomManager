@@ -9,6 +9,17 @@ erkek odalarını al
 + boş yer olan odaları al
 dolu odaları al
 + verilen oda tipine göre odaları al
+verilen cinsiyete göre boş olan odaları al
+    bir methot yazki
+        cinsiyet ve oda tipi parametleri ve boş veya dolu olma parametreleri girilsin girilsin
+        eğer cinsiyet parametreleri girilmez ise her cinsteki odaları
+        eğer tip girilmez ise bütün tipteki odaları
+        eğer boşluk parametreleri girilmez ise bütün odaları
+        versin.
+        method(roomGender, roomType, ısItAvaible) {
+            foreach allrooms
+                if(Room.getRoomGender.equals(roomGender) && Room.getRoomType == roomType && R
+        }
 verilen öğrencinin odasında ne zamandır kaldığını al
 
  */
@@ -130,9 +141,14 @@ public class Management {
     }
 
 
-
     public static void placeToRoom(Student stu) {
+        /**
+         * öğrencinin cinsiyetine göre boş odaları al
+         * odaya ekle
+         */
+        ArrayList<Room> emptyRooms = new ArrayList<>();
 
+        emptyRooms = emptyRooms(4);
     }
 
 }
