@@ -11,7 +11,7 @@ dolu odaları al
 + verilen oda tipine göre odaları al
 verilen cinsiyete göre boş olan odaları al
     bir methot yazki
-        cinsiyet ve oda tipi parametleri ve boş veya dolu olma parametreleri girilsin girilsin
+        cinsiyet ve oda tipi parametleri ve boş veya dolu olma parametreleri girilsin.
         eğer cinsiyet parametreleri girilmez ise her cinsteki odaları
         eğer tip girilmez ise bütün tipteki odaları
         eğer boşluk parametreleri girilmez ise bütün odaları
@@ -21,6 +21,16 @@ verilen cinsiyete göre boş olan odaları al
                 if(Room.getRoomGender.equals(roomGender) && Room.getRoomType == roomType && R
         }
 verilen öğrencinin odasında ne zamandır kaldığını al
+
+--------------
+program arayüzleri olarak
+    öğrenciyi sisteme kaydet
+    şu odaları al(oda tipi, müsait mi, oda cinsiyeti)
+
+Programı kullanan kişinin bir öğrenciyi bir odaya yerleştirmesi için kaç farklı argüman gerekebilir?
+    oda tipi
+    öğrenci
+
 
  */
 /**
@@ -140,15 +150,15 @@ public class Management {
         return temp;
     }
 
+    /**
+     * The method that will used for place a student to any room automatically.
+     * @param stu
+     * @param roomType
+     */
+    public static void placeToRoom(Student stu, int roomType) {
 
-    public static void placeToRoom(Student stu) {
-        /**
-         * öğrencinin cinsiyetine göre boş odaları al
-         * odaya ekle
-         */
-        ArrayList<Room> emptyRooms = new ArrayList<>();
-
-        emptyRooms = emptyRooms(4);
+        for (Room room:rooms)
+            if (room.IsItAvaible() && room.getRoomType() == roomType) room.getWhoIsStaying().add(stu);
     }
 
 }
