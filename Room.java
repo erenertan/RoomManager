@@ -10,16 +10,16 @@ public class Room {
     private int roomType;
     private String roomGender;
     private int roomPopulation;
-    private ArrayList<Student> whoIsStaying;
+    private ArrayList<Student> roomMembers;
 
     public Room() {
     }
 
-    public Room(int roomType, String roomGender, int roomPopulation, ArrayList<Student> whoIsStaying) {
+    public Room(int roomType, String roomGender, int roomPopulation, ArrayList<Student> roomMembers) {
         this.roomType = roomType;
         this.roomGender = roomGender;
         this.roomPopulation = roomPopulation;
-        this.whoIsStaying = whoIsStaying;
+        this.roomMembers = roomMembers;
     }
 
     /**
@@ -59,11 +59,11 @@ public class Room {
     }
 
     /**
-     * To place just a student to a room.
-     * @param stu
+     * To place a student to this room.
+     * @param stu is student.
      */
     public void placeAStudent(Student stu) {
-        whoIsStaying.add(stu);
+        roomMembers.add(stu);
     }
 
     /**
@@ -79,16 +79,16 @@ public class Room {
      * To take the list of students in room.
      * @return
      */
-    public ArrayList<Student> getWhoIsStaying() {
-        return whoIsStaying;
+    public ArrayList<Student> getRoomMembers() {
+        return roomMembers;
     }
 
     /**
      * To place a new set of students to room.
-     * @param whoIsStaying
+     * @param roomMembers
      */
-    public void setWhoIsStaying(ArrayList<Student> whoIsStaying) {
-        this.whoIsStaying = whoIsStaying;
+    public void setRoomMembers(ArrayList<Student> roomMembers) {
+        this.roomMembers = roomMembers;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Room {
                 "roomType=" + roomType +
                 ", roomGender='" + roomGender + '\'' +
                 ", roomPopulation=" + roomPopulation +
-                ", whoIsStaying=" + whoIsStaying +
+                ", roomMembers=" + roomMembers.toString() +
                 '}';
     }
 }

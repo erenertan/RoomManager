@@ -4,34 +4,15 @@ import java.util.ArrayList;
 /*
 öğrenci yerleştiricek
 öğrenci çıkartıcak
-kız odalarının al
-erkek odalarını al
-+ boş yer olan odaları al
-dolu odaları al
-+ verilen oda tipine göre odaları al
-verilen cinsiyete göre boş olan odaları al
-    bir methot yazki
-        cinsiyet ve oda tipi parametleri ve boş veya dolu olma parametreleri girilsin.
-        eğer cinsiyet parametreleri girilmez ise her cinsteki odaları
-        eğer tip girilmez ise bütün tipteki odaları
-        eğer boşluk parametreleri girilmez ise bütün odaları
-        versin.
-        method(roomGender, roomType, ısItAvaible) {
-            foreach allrooms
-                if(Room.getRoomGender.equals(roomGender) && Room.getRoomType == roomType && R
-        }
 verilen öğrencinin odasında ne zamandır kaldığını al
 
 --------------
 program arayüzleri olarak
-    öğrenciyi sisteme kaydet
-    şu odaları al(oda tipi, müsait mi, oda cinsiyeti)
-
-Programı kullanan kişinin bir öğrenciyi bir odaya yerleştirmesi için kaç farklı argüman gerekebilir?
-    oda tipi
-    öğrenci
-
-
+    öğrenciyi sisteme kaydet.
+    bütün şu (tip), şu (cinsiyet), şu (müsait) özellikteki odaları al
+              4,6,-     man,women,-    müsait, değil, -
+    odaya yerleştir(oto)
+    methotları yazılacak.
  */
 /**
  * Project: RoomManager
@@ -125,7 +106,7 @@ public class Management {
     public static void removeRoom(Room r) {
         rooms.remove(r);
     }
-
+/*
     public static ArrayList<Room> emptyAllRooms() {
         ArrayList<Room> temp = null;
 
@@ -149,16 +130,27 @@ public class Management {
 
         return temp;
     }
+*/
 
     /**
-     * The method that will used for place a student to any room automatically.
+     * To save a student to system.
      * @param stu
-     * @param roomType
      */
-    public static void placeToRoom(Student stu, int roomType) {
+    public static void addStudent(Student stu) {
+        students.add(stu);
+    }
 
-        for (Room room:rooms)
-            if (room.IsItAvaible() && room.getRoomType() == roomType) room.getWhoIsStaying().add(stu);
+    public static ArrayList<Room> getRooms(int roomType, String roomGender, boolean roomStage) {
+        ArrayList<Room> rooms = null;
+
+        for (Room room:rooms) {
+            if (roomType == room.getRoomType() && roomGender.equals(room.getRoomGender()) && roomStage) {
+
+                rooms.add(room);
+            }
+        }
+
+        return  rooms;
     }
 
 }
