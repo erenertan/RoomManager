@@ -1,6 +1,8 @@
 
+
 import java.io.*;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 /*
 öğrenci yerleştiricek
 öğrenci çıkartıcak
@@ -12,6 +14,8 @@ program arayüzleri olarak
     bütün şu (tip), şu (cinsiyet), şu (müsait) özellikteki odaları al
               4,6,-     man,women,-    müsait, değil, -
     odaya yerleştir(oto)
+    öğrencileri kendi özelliklerine göre sıralama methotları yazılabilir.
+    öğrencilere foto eklenebilir hale getirilebilir.(install image, makebackup, loadbackup)
     methotları yazılacak.
  */
 /**
@@ -138,6 +142,19 @@ public class Management {
      */
     public static void addStudent(Student stu) {
         students.add(stu);
+    }
+
+    public static ArrayList<Student> getStudentsByFullNameRegex(String regex){
+        Pattern pattern = Pattern.compile(((regex)));                     //?
+        ArrayList<Student> arrayList = new ArrayList<>();
+
+        for (Student student:students) {
+            if (pattern.matcher(student.getFullName()).matches()) {
+                students.add(student);
+            }
+        }
+
+        return students;
     }
 
     public static ArrayList<Room> getRooms(int roomType, String roomGender, boolean roomStage) {

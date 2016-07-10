@@ -1,3 +1,5 @@
+import com.sun.xml.internal.bind.v2.runtime.Name;
+
 /**
  * Project: RoomManager
  * <p>
@@ -51,6 +53,10 @@ public class Student {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getFullName() {
+        return getName() + getSurname();
     }
 
     public String getGender() {
