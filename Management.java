@@ -14,6 +14,7 @@ program arayüzleri olarak
     bütün şu (tip), şu (cinsiyet), şu (müsait) özellikteki odaları al
               4,6,-     man,women,-    müsait, değil, -
     odaya yerleştir(oto)
+    odaya yerleştir (manuel)
     öğrencileri kendi özelliklerine göre sıralama methotları yazılabilir.
     öğrencilere foto eklenebilir hale getirilebilir.(install image, makebackup, loadbackup)
     methotları yazılacak.
@@ -157,17 +158,46 @@ public class Management {
         return students;
     }
 
-    public static ArrayList<Room> getRooms(int roomType, String roomGender, boolean roomStage) {
-        ArrayList<Room> rooms = null;
+    /**
+     * To return any type of room as user wants.
+     * @param roomType small or big
+     * @param roomGender male or female
+     * @param roomStage ısItAvailable or not
+     * @return Arraylist
+     */
+    public static ArrayList<Room> getRooms(RoomType roomType, RoomGender roomGender,boolean roomStage) {
+        ArrayList<Room> retVal = new ArrayList<>();
 
-        for (Room room:rooms) {
-            if (roomType == room.getRoomType() && roomGender.equals(room.getRoomGender()) && roomStage) {
+        if (rooms == null) return null;
 
-                rooms.add(room);
+        for (Room room: rooms) {
+            if (roomType == RoomType.any || roomType.equals(room.getRoomType()) && roomGender == RoomGender.both
+                    || roomGender.equals(room.getRoomMembers()) || roomStage == room.isItAvailable()) {
+                retVal.add(room);
             }
         }
 
-        return  rooms;
+        return retVal;
+
     }
 
+    /**
+     * To place a student any available room
+     * @param stu
+     */
+    public static void stageToRoomOto(Student stu) {
+
+        for (Room room:rooms) {
+            if (room.isItAvailable()) room.placeAStudent(stu);
+        }
+    }
+
+    /**
+     * To place a student to a room the student wants.
+     * @param stu
+     * @param room
+     */
+    public static void stageToRoomManuel(Student stu, Room room) {
+        room.placeAStudent(stu);
+    }
 }

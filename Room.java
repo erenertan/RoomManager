@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Author: eren
  */
 public class Room {
-    private int roomType;
+    private String roomType;
     private String roomGender;
     private int roomPopulation;
     private ArrayList<Student> roomMembers;
@@ -15,7 +15,7 @@ public class Room {
     public Room() {
     }
 
-    public Room(int roomType, String roomGender, int roomPopulation, ArrayList<Student> roomMembers) {
+    public Room(String roomType, String roomGender, int roomPopulation, ArrayList<Student> roomMembers) {
         this.roomType = roomType;
         this.roomGender = roomGender;
         this.roomPopulation = roomPopulation;
@@ -26,7 +26,7 @@ public class Room {
      * To obtain which type of a room. 4 or 6.
      * @return
      */
-    public int getRoomType() {
+    public String getRoomType() {
         return roomType;
     }
 
@@ -34,7 +34,7 @@ public class Room {
      * To change of a room type.
      * @param roomType
      */
-    public void setRoomType(int roomType) {
+    public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
 
@@ -70,9 +70,9 @@ public class Room {
      * This method to obtain that the room is avaible to place a student or not.
      * @return
      */
-    public boolean IsItAvaible() {
-        if (roomPopulation < roomType) return true;
-        return false;
+    public boolean isItAvailable() {
+        return roomType.equals("small") && roomPopulation < 4 || roomType.equals("big") && roomPopulation < 6;
+
     }
 
     /**
