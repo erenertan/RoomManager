@@ -1,4 +1,4 @@
-/**
+package RoomManagement; /**
  * Project: RoomManager
  * <p>
  * Date: 16 Jul 2016

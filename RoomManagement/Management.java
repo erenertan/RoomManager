@@ -1,4 +1,4 @@
-
+package RoomManagement;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,11 +10,11 @@ verilen öğrencinin odasında ne zamandır kaldığını al
 
 --------------
 program arayüzleri olarak
-    öğrenciyi sisteme kaydet.
-    bütün şu (tip), şu (cinsiyet), şu (müsait) özellikteki odaları al
-              4,6,-     man,women,-    müsait, değil, -
-    odaya yerleştir(oto)
-    odaya yerleştir (manuel)
+    +öğrenciyi sisteme kaydet.
+    +bütün şu (tip), şu (cinsiyet), şu (müsait) özellikteki odaları al
+     +         4,6,-     man,women,-    müsait, değil, -
+    +odaya yerleştir(oto)
+    +odaya yerleştir (manuel)
     öğrencileri kendi özelliklerine göre sıralama methotları yazılabilir.
     öğrencilere foto eklenebilir hale getirilebilir.(install image, makebackup, loadbackup)
     methotları yazılacak.
@@ -27,11 +27,12 @@ program arayüzleri olarak
  */
 public class Management {
 
-    public static final String FİLE_NAME_ROOMS = "rooms.d";
+    public static  String FİLE_NAME_ROOMS = "rooms.d";
     public static final String FİLE_NAME_STUDENTS = "students.d";
 
-    private static ArrayList<Student> students;
+    public static ArrayList<Student> students;
     private static ArrayList<Room> rooms;
+
 
     public static void initialize() {
         students = new ArrayList<>();
@@ -50,6 +51,7 @@ public class Management {
         if (o == null) {
             return;         // Why this if is neccessary? If the method loadFromFile could not find the file does not return null?
         }
+        students = (ArrayList<Student>) o;
     }
 
     public static void loadRooms() {
@@ -111,31 +113,6 @@ public class Management {
     public static void removeRoom(Room r) {
         rooms.remove(r);
     }
-/*
-    public static ArrayList<Room> emptyAllRooms() {
-        ArrayList<Room> temp = null;
-
-        for (Room room:rooms) {
-            if (room.getRoomPopulation() < room.getRoomType()) {
-                temp.add(room);
-            }
-        }
-
-        return temp;
-    }
-
-    public static ArrayList<Room> emptyRooms(int roomType) {
-        ArrayList<Room> temp = null;
-
-        for (Room room:rooms) {
-            if (room.getRoomPopulation() < room.getRoomType() && room.getRoomType() == roomType) {
-                temp.add(room);
-            }
-        }
-
-        return temp;
-    }
-*/
 
     /**
      * To save a student to system.
@@ -144,6 +121,8 @@ public class Management {
     public static void addStudent(Student stu) {
         students.add(stu);
     }
+
+    public static void removeStudent(Student stu) {students.remove(stu);}
 
     public static ArrayList<Student> getStudentsByFullNameRegex(String regex){
         Pattern pattern = Pattern.compile(((regex)));                     //?
@@ -160,19 +139,19 @@ public class Management {
 
     /**
      * To return any type of room as user wants.
-     * @param roomType small or big
-     * @param roomGender male or female
+     * @param filterRoomType small or big
+     * @param filterRoomGender male or female
      * @param roomStage ısItAvailable or not
      * @return Arraylist
      */
-    public static ArrayList<Room> getRooms(RoomType roomType, RoomGender roomGender,boolean roomStage) {
+    public static ArrayList<Room> getRooms(filterRoomType RoomType, filterRoomGender RoomGender, boolean roomStage) {
         ArrayList<Room> retVal = new ArrayList<>();
 
         if (rooms == null) return null;
 
         for (Room room: rooms) {
-            if (roomType == RoomType.any || roomType.equals(room.getRoomType()) && roomGender == RoomGender.both
-                    || roomGender.equals(room.getRoomMembers()) || roomStage == room.isItAvailable()) {
+            if (RoomType == filterRoomType.any || RoomType.equals(room.getRoomType()) && RoomGender == filterRoomGender.both
+                    || RoomGender.equals(room.getRoomMembers()) || roomStage == room.isAvailable()) {
                 retVal.add(room);
             }
         }
@@ -185,10 +164,10 @@ public class Management {
      * To place a student any available room
      * @param stu
      */
-    public static void stageToRoomOto(Student stu) {
+    public static void placeToRoomOto(Student stu) {
 
         for (Room room:rooms) {
-            if (room.isItAvailable()) room.placeAStudent(stu);
+            if (room.isAvailable()) room.placeAStudent(stu);
         }
     }
 
@@ -197,7 +176,7 @@ public class Management {
      * @param stu
      * @param room
      */
-    public static void stageToRoomManuel(Student stu, Room room) {
+    public static void placeToRoomManuel(Student stu, Room room) {
         room.placeAStudent(stu);
     }
 }

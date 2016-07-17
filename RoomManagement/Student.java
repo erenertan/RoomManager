@@ -1,4 +1,4 @@
-import com.sun.xml.internal.bind.v2.runtime.Name;
+package RoomManagement;
 
 /**
  * Project: RoomManager
@@ -10,28 +10,28 @@ import com.sun.xml.internal.bind.v2.runtime.Name;
 public class Student {
     private String name;
     private String surname;
-    private String gender;
+    private Gender Gender;
     private int id;
     private int roomNumber;
     private String school;
     private int StayingInRoom;
-    private int roomType;
+    private RoomType roomType;
 
     public Student() {
     }
 
-    public Student(String school, String name, String surname, String gender, int id) {
+    public Student(String name, String surname, Gender Gender, String school , int id) {
         this.school = school;
         this.name = name;
         this.surname = surname;
-        this.gender = gender;
+        this.Gender = Gender;
         this.id = id;
     }
 
-    public Student(String name, String surname, String gender, int id, int roomNumber, String school, int stayingInRoom, int roomType) {
+    public Student(String name, String surname, Gender Gender, int id, int roomNumber, String school, int stayingInRoom, RoomType roomType) {
         this.name = name;
         this.surname = surname;
-        this.gender = gender;
+        this.Gender = Gender;
         this.id = id;
         this.roomNumber = roomNumber;
         this.school = school;
@@ -59,12 +59,12 @@ public class Student {
         return getName() + getSurname();
     }
 
-    public String getGender() {
-        return gender;
+    public Gender getGender() {
+        return Gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGender(Gender gender) {
+        this.Gender = gender;
     }
 
     public int getId() {
@@ -99,20 +99,20 @@ public class Student {
         StayingInRoom = stayingInRoom;
     }
 
-    public int getRoomType() {
+    public RoomType getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(int roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "RoomManagement.Student{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", gender='" + gender + '\'' +
+                ", RoomManagement.Gender='" + Gender + '\'' +
                 ", id=" + id +
                 ", roomNumber=" + roomNumber +
                 ", school='" + school + '\'' +

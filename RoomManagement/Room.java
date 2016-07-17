@@ -1,3 +1,5 @@
+package RoomManagement;
+
 import java.util.ArrayList;
 
 /**
@@ -7,15 +9,15 @@ import java.util.ArrayList;
  * Author: eren
  */
 public class Room {
-    private String roomType;
-    private String roomGender;
+    private RoomType roomType;
+    private Gender roomGender;
     private int roomPopulation;
     private ArrayList<Student> roomMembers;
 
     public Room() {
     }
 
-    public Room(String roomType, String roomGender, int roomPopulation, ArrayList<Student> roomMembers) {
+    public Room(RoomType roomType, Gender roomGender, int roomPopulation, ArrayList<Student> roomMembers) {
         this.roomType = roomType;
         this.roomGender = roomGender;
         this.roomPopulation = roomPopulation;
@@ -24,29 +26,29 @@ public class Room {
 
     /**
      * To obtain which type of a room. 4 or 6.
-     * @return
+     * @return roomType
      */
-    public String getRoomType() {
+    public RoomType getRoomType() {
         return roomType;
     }
 
     /**
      * To change of a room type.
-     * @param roomType
+     * @param roomType type of a room(small or big)
      */
-    public void setRoomType(String roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
     /**
      * To obtain a room for male or female.
-     * @return
+     * @return roomGender
      */
-    public String getRoomGender() {
+    public Gender getRoomGender() {
         return roomGender;
     }
 
-    public void setRoomGender(String roomGender) {
+    public void setRoomGender(Gender roomGender) {
         this.roomGender = roomGender;
     }
 
@@ -68,16 +70,16 @@ public class Room {
 
     /**
      * This method to obtain that the room is avaible to place a student or not.
-     * @return
+     * @return a room is avaible or not is it is avaible returns true.
      */
-    public boolean isItAvailable() {
-        return roomType.equals("small") && roomPopulation < 4 || roomType.equals("big") && roomPopulation < 6;
+    public boolean isAvailable() {
+        return roomType.equals(RoomType.small) && roomPopulation < 4 || roomType.equals(RoomType.big) && roomPopulation < 6;
 
     }
 
     /**
      * To take the list of students in room.
-     * @return
+     * @return members of a room in ArrayList
      */
     public ArrayList<Student> getRoomMembers() {
         return roomMembers;
@@ -85,7 +87,7 @@ public class Room {
 
     /**
      * To place a new set of students to room.
-     * @param roomMembers
+     * @param roomMembers is a ArrayList which contains students to place a room all together.
      */
     public void setRoomMembers(ArrayList<Student> roomMembers) {
         this.roomMembers = roomMembers;
@@ -93,7 +95,7 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" +
+        return "RoomManagement.Room{" +
                 "roomType=" + roomType +
                 ", roomGender='" + roomGender + '\'' +
                 ", roomPopulation=" + roomPopulation +
