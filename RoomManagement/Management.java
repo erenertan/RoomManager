@@ -31,7 +31,7 @@ public class Management {
     public static final String FİLE_NAME_STUDENTS = "students.d";
 
     public static ArrayList<Student> students;
-    private static ArrayList<Room> rooms;
+    public static ArrayList<Room> rooms;
 
 
     public static void initialize() {
@@ -122,7 +122,30 @@ public class Management {
         students.add(stu);
     }
 
-    public static void removeStudent(Student stu) {students.remove(stu);}
+    /**
+     * Adds a student to students arrayList and then place the student any of rooms.
+     * @param stu student
+     */
+    public static void addAndPlaceStudent(Student stu) {
+        students.add(stu);
+
+        placeToRoomOto(stu);
+    }
+
+    /**
+     * When a student deleted with this method, method deleted the student from students and the room the student stays.
+     * @param stu student
+     */
+    public static void removeStudent(Student stu) {
+        students.remove(stu);
+
+        for (Room room: rooms) {
+            if (stu.getRoomNumber() == room.getRoomNumber()) {
+                room.getRoomMembers().remove(stu);
+            }
+        }
+
+    }
 
     public static ArrayList<Student> getStudentsByFullNameRegex(String regex){
         Pattern pattern = Pattern.compile(((regex)));                     //?
@@ -138,11 +161,11 @@ public class Management {
     }
 
     /**
-     * To return any type of room as user wants.
-     * @param filterRoomType small or big
-     * @param filterRoomGender male or female
-     * @param roomStage ısItAvailable or not
-     * @return Arraylist
+     * To return rooms in every type as user wants.
+     * @param RoomType type of room
+     * @param RoomGender gender of room
+     * @param roomStage is available to stay?
+     * @return arraylist<room>
      */
     public static ArrayList<Room> getRooms(filterRoomType RoomType, filterRoomGender RoomGender, boolean roomStage) {
         ArrayList<Room> retVal = new ArrayList<>();
@@ -150,8 +173,8 @@ public class Management {
         if (rooms == null) return null;
 
         for (Room room: rooms) {
-            if (RoomType == filterRoomType.any || RoomType.equals(room.getRoomType()) && RoomGender == filterRoomGender.both
-                    || RoomGender.equals(room.getRoomMembers()) || roomStage == room.isAvailable()) {
+            if (RoomType == filterRoomType.any || RoomType.equals(room.getRoomType()) &&
+                    RoomGender == filterRoomGender.both || RoomGender.equals(room.getRoomGender()) && roomStage == room.isAvailable()) {
                 retVal.add(room);
             }
         }
@@ -167,7 +190,7 @@ public class Management {
     public static void placeToRoomOto(Student stu) {
 
         for (Room room:rooms) {
-            if (room.isAvailable()) room.placeAStudent(stu);
+            if (room.isAvailable() && stu.getGender().equals(room.getRoomGender())) room.getRoomMembers().add(stu);
         }
     }
 
@@ -179,4 +202,5 @@ public class Management {
     public static void placeToRoomManuel(Student stu, Room room) {
         room.placeAStudent(stu);
     }
+
 }

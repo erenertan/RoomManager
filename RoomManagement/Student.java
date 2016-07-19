@@ -7,20 +7,24 @@ package RoomManagement;
  * Author: eren
  */
 
-public class Student {
+/*
+    stayingInRoom parametresinin kullanımını incele.
+*/
+
+
+
+class Student {
     private String name;
     private String surname;
     private Gender Gender;
     private int id;
-    private int roomNumber;
     private String school;
-    private int StayingInRoom;
-    private RoomType roomType;
+    private int roomNumber;
 
-    public Student() {
+    Student() {
     }
 
-    public Student(String name, String surname, Gender Gender, String school , int id) {
+    Student(String name, String surname, Gender Gender, String school , int id) {
         this.school = school;
         this.name = name;
         this.surname = surname;
@@ -28,96 +32,85 @@ public class Student {
         this.id = id;
     }
 
-    public Student(String name, String surname, Gender Gender, int id, int roomNumber, String school, int stayingInRoom, RoomType roomType) {
+    Student(String name, String surname, Gender Gender, int id, int roomNumber, String school, int stayingInRoom, RoomType roomType) {
         this.name = name;
         this.surname = surname;
         this.Gender = Gender;
         this.id = id;
-        this.roomNumber = roomNumber;
         this.school = school;
-        StayingInRoom = stayingInRoom;
-        this.roomType = roomType;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public String getSurname() {
+    String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    void setSurname(String surname) {
         this.surname = surname;
     }
 
-    public String getFullName() {
+    String getFullName() {
         return getName() + getSurname();
     }
 
-    public Gender getGender() {
+    Gender getGender() {
         return Gender;
     }
 
-    public void setGender(Gender gender) {
+    void setGender(Gender gender) {
         this.Gender = gender;
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
-    }
-
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
-
-    public String getSchool() {
+    String getSchool() {
         return school;
     }
 
-    public void setSchool(String school) {
+    void setSchool(String school) {
         this.school = school;
     }
 
-    public int getStayingInRoom() {
-        return StayingInRoom;
+    void findRoomNumber() {
+        for (Room room: Management.rooms) {
+            if (room.getRoomMembers().equals(Management.getStudentsByFullNameRegex(getFullName()))) {
+                roomNumber = room.getRoomNumber();
+            }
+        }
     }
 
-    public void setStayingInRoom(int stayingInRoom) {
-        StayingInRoom = stayingInRoom;
-    }
+    int getRoomNumber() {
+        for (Room room: Management.rooms) {
+            if (room.getRoomMembers().equals(Management.getStudentsByFullNameRegex(getFullName()))) {
+                roomNumber = room.getRoomNumber();
+            }
+        }
 
-    public RoomType getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(RoomType roomType) {
-        this.roomType = roomType;
+        return roomNumber;
     }
 
     @Override
     public String toString() {
-        return "RoomManagement.Student{" +
+        return "Student{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", RoomManagement.Gender='" + Gender + '\'' +
+                ", Gender=" + Gender +
                 ", id=" + id +
-                ", roomNumber=" + roomNumber +
                 ", school='" + school + '\'' +
-                ", StayingInRoom=" + StayingInRoom +
-                ", roomType=" + roomType +
+                ", roomNumber=" + roomNumber +
                 '}';
     }
 }
